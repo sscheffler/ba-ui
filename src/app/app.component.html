@@ -1,3 +1,3 @@
-<h1>
-  {{title}}
-</h1>
+<li *ngFor="let i of identities">
+  {{i.name}} - {{i.type}} - {{i.identificationRegex}}
+</li>
