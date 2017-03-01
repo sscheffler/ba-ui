@@ -1,3 +1,28 @@
-<li *ngFor="let i of identities">
-  {{i.name}} - {{i.type}} - {{i.identificationRegex}}
-</li>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="jumbotron">
+        <button type="button" class="btn btn-success" (click)="onAddIdentity()">
+          <span class="fa fa-plus" aria-hidden="true"></span>
+        </button>
+        <div class="input-group" *ngFor="let i of identities">
+          <span class="input-group-addon">Name</span>
+          <input type="text" class="form-control" value="{{i.name}}" [(ngModel)]="i.name">
+          <span class="input-group-addon">Type</span>
+          <input type="text" class="form-control" value="{{i.type}}" [(ngModel)]="i.type">
+          <span class="input-group-addon">Regex</span>
+          <input type="text" class="form-control" value="{{i.identificationRegex}}" [(ngModel)]="i.identificationRegex">
+          <span class="input-group-btn">
+          <button type="button" class="btn btn-danger" (click)="onDeleteIdentity(i)">
+            <span class="fa fa-trash" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-info" (click)="onSaveIdentity(i)">
+          <span class="fa fa-save" aria-hidden="true"></span>
+          </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6"></div>
+  </div>
+</div>

@@ -20,6 +20,26 @@ export class IdentityConfigService {
                .catch(this.handleError);
   }
 
+  update(i: Identity): Promise<Identity> {
+    return this.http.put(i._links.self.href, i)
+               .toPromise()
+               .then(response => response.json() as Identity)
+               .catch(this.handleError);
+  }
+
+  save(i: Identity): Promise<Identity> {
+      return this.http.post(this.identitiesUrl, i)
+               .toPromise()
+               .then(response => response.json() as Identity)
+               .catch(this.handleError);
+  }
+
+  delete(i: Identity): Promise<Identity> {
+      return this.http.delete(i._links.self.href)
+               .toPromise()
+               .catch(this.handleError);
+  }
+
     private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;

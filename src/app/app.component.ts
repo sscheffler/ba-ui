@@ -14,11 +14,33 @@ export class AppComponent implements OnInit{
 
   constructor(private identityConfigService: IdentityConfigService){}
   ngOnInit() { 
-    this.title = 'on init works!';
-    this.identities.push(new Identity("namee"))
 
     this.identityConfigService.getIdentities()
     .then(i => this.identities = i);
     
   }
+
+  onDeleteIdentity(i: Identity){
+    //todo -i item has to be removed from array here
+    this.identityConfigService.delete(i)
+      .then(i => console.log("deleted"))
+  }
+
+  onAddIdentity() {
+    this.identities.push(new Identity())
+  }
+
+  onSaveIdentity(i: Identity) {
+      if(i._links.self.href === "new"){
+        this.identityConfigService.save(i)
+          .then(i => console.log("saved")
+          //this.identities[idx] = i todo -i replace mechanism
+          );
+      } else {
+        this.identityConfigService.update(i)
+          .then(i => console.log("updated")
+            //i => this.identities[idx] = i todo -i replace mechanism
+          );
+      }
+    }
 }
